@@ -1,0 +1,23 @@
+def pushup(arr,i):
+    if arr[parent(i)]<arr[i]:
+        arr[i],arr[parent(i)]=arr[parent(i)],arr[i]
+        pushup(arr, parent(i))
+
+# Push Down function
+def push_down(arr,n,i):
+        l=left(i)
+        r=right(i)
+
+        if l >=n :
+                return i
+        elif r>=n:
+                arr[i], arr[l] = arr[l], arr[i]
+                return l
+        else: 
+                if arr[l]>arr[r]:
+                        arr[i],arr[l]=arr[l],arr[i]
+                        largest=l
+                else:
+                        arr[i],arr[r]=arr[r],arr[i]
+                        largest=r
+                return push_down(arr,n,largest)

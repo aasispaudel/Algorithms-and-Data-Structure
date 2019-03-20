@@ -1,0 +1,95 @@
+'''
+The variant of quicksort algorithm
+Splits into 3 arrays using 2 pivots!
+'''
+
+'''
+Class
+(
+@param arr: array to sort
+       randomize: selects randomly two pivots if True
+                  selects first two elements as pivots if False
+
+@functions quick_sort() sorts the array
+           partition runs the partition algorithm
+)
+
+'''
+
+from random import randrange
+
+class Quicksort:
+    def __init__(self, arr, randomize=False):
+        self.arr = arr.copy()
+        self.size = len(arr)
+        self.randomize = randomize
+
+        
+    '''
+    This function calls itself recursively until the
+    array is sorted
+     '''
+    def __quicksort(self, p, r):
+        if p < r:
+            q1, q2 = self.partition(p, r)
+            
+            self.__quicksort(p, q1-1)
+            self.__quicksort(q1+1, q2-1)
+            self.__quicksort(q2+1, r)
+
+
+    def partition(self, p, q):
+        # Selects two random elements as pivots as place them
+        # at the first two indices
+        if self.randomize:
+            key = [randrange(p, q+1) for _ in range(2)]
+            while key[0] == key[1]:
+                key = [randrange(p, q+1) for _ in range(2)]
+
+            self.arr[p], self.arr[key[0]] = self.arr[key[0]], self.arr[p]
+            self.arr[p+1], self.arr[key[1]] = self.arr[key[1]], self.arr[p+1]
+
+        #Actual work begins here!
+        
+        if self.arr[p] > self.arr[p+1]:
+            self.arr[p], self.arr[p+1] = self.arr[p+1], self.arr[p]
+
+        x1 = self.arr[p]
+        
+        i = p + 2
+        
+        for k in range(p+2, q+1):
+            if self.arr[k] <= x1:
+                self.arr[i], self.arr[k] = self.arr[k], self.arr[i]
+                i += 1
+
+        self.arr[p+1], self.arr[i-1] = self.arr[i-1], self.arr[p+1]
+        self.arr[p], self.arr[i-2] = self.arr[i-2], self.arr[p]
+
+        j = i
+                
+        x2 = self.arr[j-1]
+
+        for k in range(j, q+1):
+            if self.arr[k] <= x2:
+                self.arr[j], self.arr[k] = self.arr[k], self.arr[j]
+                j += 1
+
+                
+        self.arr[j-1], self.arr[i-1] = self.arr[i-1], self.arr[j-1]
+
+        return i-2, j-1
+
+        
+    def quick_sort(self):
+        self.__quicksort(0, self.size-1)
+        return self.arr
+
+def main():
+    arr = [769, 833, 644, 94, 913]
+
+    sorter = Quicksort(arr)
+    print(sorter.quick_sort())
+
+if __name__=='__main__':
+    main()

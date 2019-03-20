@@ -1,0 +1,57 @@
+class Quicksort:
+
+    def __init__(self, arr):
+        self.arr = arr
+        self.size = len(arr)
+
+    def l_partition(self, p, q):
+        x = self.arr[p]
+        i = p + 1
+        for j in range(p+1, q+1):
+            if self.arr[j] <= x:
+                self.arr[i], self.arr[j] = self.arr[j], self.arr[i]
+                i += 1
+
+        self.arr[p], self.arr[i-1] = self.arr[i-1], self.arr[p]
+
+        return i-1
+
+    def __quicksort(self, p, r):
+        if p < r:
+            q = self.h_partition(p, r)
+            self.__quicksort(p, q-1)
+            self.__quicksort(q+1, r)
+
+    def quick_sort(self):
+        self.__quicksort(0, self.size-1)
+        return self.arr
+
+    def h_partition(self, p, q):
+        x = self.arr[p]
+        i = p - 1
+        j = q + 1
+
+        while True:
+            i += 1
+            while self.arr[i] < x:
+                i += 1
+                print('upper i ', i)
+
+            j -= 1
+            while self.arr[j] > x:
+                j -= 1
+                print('lower j ', j)
+                
+            if i >= j:
+                return j
+
+            self.arr[i], self.arr[j] = self.arr[j], self.arr[i]
+        
+   
+q1 = [6, 10, 13, 5, 8, 3, 2, 11]
+sorter = Quicksort(q1)
+
+print(q1)
+# print(sorter.quick_sort())
+
+print(sorter.h_partition(0, len(q1)-1))

@@ -1,0 +1,61 @@
+def naive_recursive(length):
+    if(length <= 1):
+        return length
+    else:
+        return (gen_seq(length-1) + gen_seq(length-2))
+
+def bottom_up(length):
+    arr = []
+    arr[0] = 0
+    arr[2] = 1
+    for i in range(2, length+1):
+        arr[i] = arr[i-1]+arr[i-2]
+
+    return arr
+
+def closed_form(length):
+    golden = (1+math.sqrt(5))/2.0
+    return int(pow(golden, length)/ math.sqrt(5))
+
+def matrix_method(length): 
+    F = [[1, 1], 
+         [1, 0]] 
+    if (n == 0): 
+        return 0
+    power(F, n - 1) 
+      
+    return F[0][0] 
+  
+def multiply(F, M): 
+  
+    x = (F[0][0] * M[0][0] + 
+         F[0][1] * M[1][0]) 
+    y = (F[0][0] * M[0][1] +
+         F[0][1] * M[1][1]) 
+    z = (F[1][0] * M[0][0] + 
+         F[1][1] * M[1][0]) 
+    w = (F[1][0] * M[0][1] + 
+         F[1][1] * M[1][1]) 
+      
+    F[0][0] = x 
+    F[0][1] = y 
+    F[1][0] = z 
+    F[1][1] = w 
+  
+def power(F, n): 
+  
+    M = [[1, 1], 
+         [1, 0]] 
+
+    for i in range(2, n + 1): 
+        multiply(F, M) 
+  
+RUNNING_TIME = 3
+
+from time import clock
+start = time.clock()
+while(abs(time.clock()-start) < 3):
+    print(naive_recursive)
+    print(bottom_up)
+    print(closed_form)
+    print(matrix_method)

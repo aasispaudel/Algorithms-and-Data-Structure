@@ -1,0 +1,29 @@
+class heapsort:
+    def __init__(self, arr):
+        self.arr = arr;
+        self.n = len(arr)
+
+    def heap_sort(self):
+        #Build the max
+        for i in range(self.n, -1, -1):
+            self.heapify(self.n, i)
+
+        for i in range(self.n-1, 0, -1):
+            #Swap the last leaf and root
+            self.arr[i], arr[0] = arr[0], arr[i]
+            # heapify again since we change our heap
+            self.heapify(i, 0)
+
+    def heapify(self, k, i):
+        largest = i
+        left = 2*i +1
+        right = 2*i + 2
+
+        # SWAP left child and root if existing left child is bigger
+        if left < k and self.arr[i] < self.arr[l]:
+            largest = l
+
+        # SWAP right child and root if existing right child is bigger
+        if right < k and self.arr[largest] < self.arr[right]:
+            arr[i], self.arr[largest] = self.arr[largest], self.arr[i] # SWAP
+            heapify(k, largest)

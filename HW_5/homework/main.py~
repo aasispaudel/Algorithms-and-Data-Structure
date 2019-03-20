@@ -1,0 +1,4 @@
+import q_variant as q_
+import quick_sort as q
+# import data_generation
+

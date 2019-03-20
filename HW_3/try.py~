@@ -1,0 +1,2 @@
+f = open("temp.txt", "w")
+f.write("What the fuck is going on!!@")

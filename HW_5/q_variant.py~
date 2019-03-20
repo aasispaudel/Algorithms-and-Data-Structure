@@ -1,0 +1,17 @@
+
+class Quicksort:
+    def __init__(self, arr):
+        self.arr = arr.copy()
+        self.size = len(arr)
+
+    def __quicksort(self, p, q):
+        pass
+
+    def partition(self, p, q):
+        x1 = self.arr[0]
+        x2 = self.arr[1]
+
+                
+    def quick_sort(self):
+        __quicksort(self, p, q)
+        return self.arr
