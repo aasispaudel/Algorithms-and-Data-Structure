@@ -1,0 +1,9 @@
+class Node:
+    def __init__(self):
+        self.val = 0
+        self.node = None
+
+
+node = Node()
+node.val = 1
+node.

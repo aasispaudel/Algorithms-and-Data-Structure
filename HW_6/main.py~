@@ -1,0 +1,7 @@
+import counting_sort as cs
+import bucket_sort as bs
+import sort_words as sw
+
+print(cs.counting_sort([9, 1, 6, 7, 6, 2, 1]))
+print(bs.bucket_sort([0.9, 0.1, 0.6, 0.7, 0.6, 0.3, 0.1]))
+print(sw.sort_words(["word", "category", "cat", "new", "news", "world", "bear", "at", "work", "time"]))

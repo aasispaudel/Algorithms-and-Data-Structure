@@ -1,0 +1,12 @@
+class Stack:
+
+    class A:
+        def talk(self):
+            return 'talking...'
+
+
+stack = Stack()
+
+a = stack.A()
+
+print(a.talk())

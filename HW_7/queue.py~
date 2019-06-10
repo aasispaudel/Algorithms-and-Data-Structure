@@ -1,0 +1,22 @@
+import stack
+
+class Queue:
+
+    def __init__(self, size=-1):
+        self.size = size
+        self.current_size = 0
+        
+        self.queue = stack.Stack(size)
+        self.assistant = stack.Stack(size)
+        
+    def enqueue(self, val):
+        if (self.size != -1):
+            if self.current_size >= self.size:
+                print('Overflow')
+                return
+
+        if self.current_size == 0:
+            self.queue.push(val)
+
+        
+    
